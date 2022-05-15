@@ -6,8 +6,7 @@ const tableSchema = new mongoose.Schema({
     required: true
   },
   location: {
-    type: 
-    {
+    type: {
       x: {
         type: Number,
         required: true
@@ -15,8 +14,9 @@ const tableSchema = new mongoose.Schema({
       y: {
         type: Number,
         required: true
-      }
-    }
-  }
+      },
+    },
+  },
 });
-module.exports = mongoose.model("Table", tableSchema);
+
+module.exports = mongoose.model('Table', tableSchema);
