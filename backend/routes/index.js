@@ -1,10 +1,9 @@
-const { tablesRoute } = require('./tables');
+const tables = require('./tables');
+const reservation = require('./reservation');
 
-const setRoutes = (router) => {
-  tablesRoute(router);
+module.exports = (router) => {
+  reservation(router);
+  tables(router);
+
   return router;
-};
-
-module.exports = {
-  setRoutes,
 };
