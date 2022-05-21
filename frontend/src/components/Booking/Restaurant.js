@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "./Restaurant.css";
 
-const Restaurant = ({ disabledTables }) => {
+const Restaurant = ({ availableTables, selectedTable, setSelectedTable }) => {
   const [hoveredTable, setHoveredTable] = useState(null);
-  const [selectedTable, setSelectedTable] = useState(null);
 
   const getTableColor = (tableId) => {
-    if (disabledTables.includes(tableId)) {
+    if (availableTables.includes(tableId)) {
       return "#1C1C1C";
     } else if (tableId === selectedTable) {
       return "#36FF36";
@@ -18,7 +17,7 @@ const Restaurant = ({ disabledTables }) => {
   };
 
   const selectTable = (tableId) => {
-    if (selectedTable == tableId || disabledTables.includes(tableId)) {
+    if (selectedTable === tableId || availableTables.includes(tableId)) {
       setSelectedTable(null);
     } else {
       setSelectedTable(tableId);
