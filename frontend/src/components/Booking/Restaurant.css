@@ -1,0 +1,9 @@
+.restaurant-preview {
+    background-image: url('../../assets/scheme.jpg');
+    width: 1024px;
+    align-self: center;
+}
+
+path {
+    cursor: pointer;
+}
