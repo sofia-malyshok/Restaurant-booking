@@ -5,7 +5,7 @@ const Restaurant = ({ availableTables, selectedTable, setSelectedTable }) => {
   const [hoveredTable, setHoveredTable] = useState(null);
 
   const getTableColor = (tableId) => {
-    if (availableTables.includes(tableId)) {
+    if (!availableTables.includes(tableId)) {
       return "#1C1C1C";
     } else if (tableId === selectedTable) {
       return "#36FF36";
@@ -16,14 +16,12 @@ const Restaurant = ({ availableTables, selectedTable, setSelectedTable }) => {
     }
   };
 
-  const selectTable = (tableId) => {
-    if (selectedTable === tableId || availableTables.includes(tableId)) {
-      setSelectedTable(null);
-    } else {
-      setSelectedTable(tableId);
-    }
-  };
-
+  const selectTable = (tableId) =>
+    setSelectedTable(
+      selectedTable === tableId || !availableTables.includes(tableId)
+        ? 0
+        : tableId
+    );
   return (
     <>
       <h3 className="mt-3">Choose your table</h3>

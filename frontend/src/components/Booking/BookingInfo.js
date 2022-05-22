@@ -30,7 +30,7 @@ const BookingInfo = ({
   availableTables,
   isDateAvailable,
 }) => {
-  const [capacity, setCapacity] = useState(1);
+  const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [isChoosingDate, setChoosingDate] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState({
@@ -43,12 +43,12 @@ const BookingInfo = ({
   });
 
   useEffect(() => {
-    checkAvailableDate(selectedDate, capacity);
-  }, [selectedDate, capacity]);
+    checkAvailableDate(selectedDate, numberOfGuests);
+  }, [selectedDate, numberOfGuests]);
 
   useEffect(() => {
-    loadAvailableTables(selectedDate, capacity, startTime, endTime);
-  }, [selectedDate, capacity, startTime, endTime]);
+    loadAvailableTables(selectedDate, numberOfGuests, startTime, endTime);
+  }, [selectedDate, numberOfGuests, startTime, endTime]);
 
   const onDateChange = (newDate) => {
     setSelectedDate(newDate);
@@ -62,7 +62,7 @@ const BookingInfo = ({
         <Form.Label>Amount of guests</Form.Label>
         <Form.Select
           style={{ width: "200px" }}
-          onChange={(e) => setCapacity(e.target.value)}
+          onChange={(e) => setNumberOfGuests(e.target.value)}
         >
           {guestsOptions.map((option) => (
             <option key={option.value} value={option.value}>

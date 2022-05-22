@@ -7,7 +7,7 @@ import Booking from "./components/Booking";
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div className="vh-100 vw-100">
         <Navbar bg="light" variant="light">
           <Container>
             <Navbar.Brand href="/" className="font-weight-bold">
