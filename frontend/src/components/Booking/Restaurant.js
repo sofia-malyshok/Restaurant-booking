@@ -10,7 +10,7 @@ const Restaurant = ({ availableTables, selectedTable, setSelectedTable }) => {
     } else if (tableId === selectedTable) {
       return "#36FF36";
     } else if (tableId === hoveredTable) {
-      return "#FFCE69";
+      return "#e6cf91";
     } else {
       return "#FFAB00";
     }
