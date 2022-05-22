@@ -5,17 +5,9 @@ const tableSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  location: {
-    type: {
-      x: {
-        type: Number,
-        required: true
-      },
-      y: {
-        type: Number,
-        required: true
-      },
-    },
+  tableId: {
+    type: Number,
+    required: true
   },
 });
 
