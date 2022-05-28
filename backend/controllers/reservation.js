@@ -1,8 +1,11 @@
-const ReservationModel = require('../models/reservation');
+const ReservationModel = require("../models/reservation");
 
 module.exports = {
   createReservation: (req, res) => {
-    const reservation = new ReservationModel(req.body);
+    const reservation = new ReservationModel({
+      ...req.body,
+      user: req.user._id,
+    });
 
     reservation.save((err, createdReservation) => {
       if (err) {
@@ -10,6 +13,6 @@ module.exports = {
       } else {
         res.status(200).send(createdReservation);
       }
-    }); 
+    });
   },
 };
