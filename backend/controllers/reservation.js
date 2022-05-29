@@ -15,4 +15,27 @@ module.exports = {
       }
     });
   },
+
+  getReservations: (req, res) => {
+    ReservationModel
+      .find({ user: req.params.id })
+      .exec((err, reservations) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.status(200).send(reservations);
+        }
+      });
+  },
+
+  deleteResevation: (req, res) => {
+    ReservationModel.findByIdAndRemove(req.params.id, function (err, reservation){
+      if (err) {
+        console.log(err)
+      }
+      else{
+        res.status(200).send(reservation);
+      }
+    });
+  },
 };
