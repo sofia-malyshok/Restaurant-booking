@@ -18,7 +18,7 @@ module.exports = {
 
   getReservations: (req, res) => {
     ReservationModel
-      .find({ user: req.params.id })
+      .find({user: req.user._id })
       .exec((err, reservations) => {
         if (err) {
           res.send(err);
