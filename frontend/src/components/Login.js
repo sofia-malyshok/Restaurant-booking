@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 
-const Login = ({ user, setUser }) => {
+const Login = ({ user, onUserChange, onLogin }) => {
   const [loginMode, setLoginMode] = useState(true);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
@@ -20,7 +20,10 @@ const Login = ({ user, setUser }) => {
       .post("/api/auth/login", formData)
       .then((res) => {
         console.log(res.data);
-        setUser(res.data);
+        onUserChange(res.data);
+        if (onLogin) {
+          onLogin();
+        }
       })
       .catch((err) => {
         setError(err.response.data.message);

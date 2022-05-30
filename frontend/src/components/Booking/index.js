@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Container, Button, ProgressBar, Form } from "react-bootstrap";
 import Table from "./Restaurant";
 import BookingInfo from "./BookingInfo";
-import Login from "./Login";
+import Login from "../Login";
 import axios from "axios";
 import checkmark from "../../assets/checkmark.jpg";
 
-const Booking = () => {
+const Booking = ({ user, onUserChange }) => {
   const [stage, setStage] = useState(1);
   const [availableTables, setAvailableTables] = useState([]);
   const [numberOfGuests, setNumberOfGuests] = useState(0);
@@ -14,7 +14,6 @@ const Booking = () => {
   const [toDate, setToDate] = useState(null);
   const [selectedTable, setSelectedTable] = useState(0);
   const [isDateAvailable, setIsDateAvailable] = useState(false);
-  const [user, setUser] = useState(null);
   const [reservation, setReservation] = useState(null);
 
   useEffect(() => {
@@ -126,7 +125,7 @@ const Booking = () => {
           setSelectedTable={setSelectedTable}
         />
       ) : stage === 3 ? (
-        <Login user={user} setUser={setUser} />
+        <Login user={user} onUserChange={onUserChange} />
       ) : (
         <div className="d-flex flex-column mt-5">
           <h3 className="align-self-center">Thank you for your booking</h3>
