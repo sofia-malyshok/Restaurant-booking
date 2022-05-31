@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Container, Button, ProgressBar, Form } from "react-bootstrap";
 import Table from "./Restaurant";
 import BookingInfo from "./BookingInfo";
+import Login from "../Login";
 import axios from "axios";
 import checkmark from "../../assets/checkmark.jpg";
 
-const Booking = () => {
+const Booking = ({ user, onUserChange }) => {
   const [stage, setStage] = useState(1);
   const [availableTables, setAvailableTables] = useState([]);
   const [numberOfGuests, setNumberOfGuests] = useState(0);
@@ -37,7 +38,7 @@ const Booking = () => {
     if (
       (stage === 1 && availableTables.length > 0) ||
       (stage === 2 && selectedTable !== 0) ||
-      stage === 3
+      (stage === 3 && user)
     ) {
       return true;
     }
@@ -46,14 +47,17 @@ const Booking = () => {
 
   const createReservation = () => {
     const data = {
-      user: "62812c00e095a3c05f12fd78",
       table: availableTables.find((tab) => tab.tableId === selectedTable)._id,
       numberOfGuests,
       fromDate,
       toDate,
     };
     axios
-      .post("http://localhost:3000/reservation", data)
+      .post("/api/reservation", data, {
+        headers: {
+          Authorization: user ? "Bearer " + user.token : "",
+        },
+      })
       .then((res) => {
         console.log(res.data);
         setReservation(res.data);
@@ -74,7 +78,7 @@ const Booking = () => {
 
     axios
       .get(
-        `http://localhost:3000/available-tables?from=${fromDateTmp.toISOString()}&to=${toDateTmp.toISOString()}&capacity=${cap}`
+        `/api/available-tables?from=${fromDateTmp.toISOString()}&to=${toDateTmp.toISOString()}&capacity=${cap}`
       )
       .then((res) => {
         setAvailableTables(res.data);
@@ -91,7 +95,7 @@ const Booking = () => {
 
     axios
       .get(
-        `http://localhost:3000/available-tables?from=${fromDateTmp.toISOString()}&to=${toDateTmp.toISOString()}&capacity=${cap}`
+        `/api/available-tables?from=${fromDateTmp.toISOString()}&to=${toDateTmp.toISOString()}&capacity=${cap}`
       )
       .then((res) => {
         setIsDateAvailable(res.data.length > 0);
@@ -121,7 +125,7 @@ const Booking = () => {
           setSelectedTable={setSelectedTable}
         />
       ) : stage === 3 ? (
-        <h3>User login would be here</h3>
+        <Login user={user} onUserChange={onUserChange} />
       ) : (
         <div className="d-flex flex-column mt-5">
           <h3 className="align-self-center">Thank you for your booking</h3>
