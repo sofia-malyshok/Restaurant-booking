@@ -24,3 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-localstorage-commands';
+
+Cypress.Commands.add('login', () => {
+    cy.get('.navbar-nav a.nav-link').contains('Login').click();
+    cy.get('[data-testid="user-email"]').type('soniamalish17@gmail.com');
+    cy.get('[data-testid="user-password"]').type('123456!');
+    cy.get('[data-testid="submit-login"]').click();
+});

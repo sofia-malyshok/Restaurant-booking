@@ -128,7 +128,7 @@ const Booking = ({ user, onUserChange }) => {
         <Login user={user} onUserChange={onUserChange} />
       ) : (
         <div className="d-flex flex-column mt-5">
-          <h3 className="align-self-center">Thank you for your booking</h3>
+          <h3 className="align-self-center" data-testid="thanks-button">Thank you for your booking</h3>
           <img
             className="align-self-center"
             src={checkmark}
@@ -152,7 +152,7 @@ const Booking = ({ user, onUserChange }) => {
           >
             Back
           </Button>
-          <Button onClick={nextStage} disabled={!canMoveToNextStage()}>
+          <Button data-testid="continue-button" onClick={nextStage} disabled={!canMoveToNextStage()}>
             Continue
           </Button>
         </div>

@@ -54,7 +54,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
 
   if (loginMode) {
     return (
-      <div>
+      <div data-testid="login-container">
         <h3 className="mt-3">Please login</h3>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
@@ -62,6 +62,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
             style={{ width: "300px" }}
             required
             value={formData.email}
+            data-testid="user-email"
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
@@ -74,13 +75,14 @@ const Login = ({ user, onUserChange, onLogin }) => {
             style={{ width: "300px" }}
             required
             value={formData.password}
+            data-testid="user-password"
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
           ></Form.Control>
         </Form.Group>
         {error ? <span className="text-danger">{error}</span> : null}
-        <Button className="d-block" onClick={login}>
+        <Button className="d-block" data-testid="submit-login" onClick={login}>
           Login
         </Button>
         <a onClick={() => setLoginMode(false)} href="#">
@@ -99,6 +101,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
             placeholder="example@example.com"
             required
             value={formData.email}
+            data-testid="email-input"
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
@@ -112,6 +115,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
             placeholder="@werty345"
             required
             value={formData.password}
+            data-testid="password-input"
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
@@ -124,6 +128,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
             placeholder="John"
             required
             value={formData.name}
+            data-testid="name-input"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           ></Form.Control>
         </Form.Group>
@@ -134,6 +139,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
             placeholder="Doe"
             required
             value={formData.surname}
+            data-testid="surname-input"
             onChange={(e) =>
               setFormData({ ...formData, surname: e.target.value })
             }
@@ -145,6 +151,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
               placeholder="+123 456 789"
               required
               value={formData.phone}
+              data-testid="phone-input"
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
@@ -153,7 +160,7 @@ const Login = ({ user, onUserChange, onLogin }) => {
         </Form.Group>
         {error ? <span className="text-danger">{error}</span> : null}
         <div className="d-flex mt-3">
-          <Button className="me-4" onClick={register}>
+          <Button className="me-4" data-testid="register-submit" onClick={register}>
             Register
           </Button>
           <Button

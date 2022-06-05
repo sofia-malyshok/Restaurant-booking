@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const compression = require("compression");
 const helmet = require("helmet");
-const db = require("./config/db");
+const db = require("./config/test_db");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 

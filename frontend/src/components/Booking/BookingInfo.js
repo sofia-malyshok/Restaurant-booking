@@ -62,6 +62,7 @@ const BookingInfo = ({
         <Form.Label>Amount of guests</Form.Label>
         <Form.Select
           style={{ width: "200px" }}
+          data-testid="guests-select"
           onChange={(e) => setNumberOfGuests(e.target.value)}
         >
           {guestsOptions.map((option) => (
@@ -78,6 +79,7 @@ const BookingInfo = ({
         <Form.Label>Booking date</Form.Label>
 
         <Button
+          data-testid="date-button"
           onClick={() => setChoosingDate(!isChoosingDate)}
           style={{ width: "200px" }}
         >
@@ -90,6 +92,7 @@ const BookingInfo = ({
             onChange={onDateChange}
             className="position-absolute"
             style={{ top: "75px", zIndex: "1" }}
+            data-testid="date-picker"
           />
         ) : null}
         <Form.Text>
@@ -99,7 +102,7 @@ const BookingInfo = ({
               is available
             </span>
           ) : (
-            <span className="text-danger mt-3">
+            <span className="text-danger mt-3" data-testid="no-tables-message">
               Chosen date <strong>{format(selectedDate, "dd.MM.yyyy")}</strong>{" "}
               is fully booked. Please choose another one
             </span>
@@ -116,12 +119,14 @@ const BookingInfo = ({
               minTime={timeConstraints.minStart}
               maxTime={endTime}
               className="me-3"
+              data-testid="start-time"
             />
             <TimePicker
               selected={endTime}
               onChange={(time) => setEndTime(time)}
               minTime={startTime}
               maxTime={timeConstraints.maxEnd}
+              data-testid="end-time"
             />
           </div>
 

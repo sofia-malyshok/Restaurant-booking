@@ -19,6 +19,7 @@
     "express-session": "^1.17.3",
     "helmet": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^8.6.0",
     "mongoose": "^6.3.3",
     "morgan": "^1.10.0",
     "passport": "^0.6.0",
