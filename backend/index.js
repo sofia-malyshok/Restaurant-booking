@@ -3,9 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const compression = require("compression");
 const helmet = require("helmet");
-const db = require("./config/test_db");
+let db;
+if (process.env.NODE_ENV === "test") {
+  db = require("./config/test_db");
+} else {
+  db = require("./config/db");
+}
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 require("dotenv").config();
 require("./config/passport");
@@ -29,10 +35,10 @@ app.use("/api", setRoutes(router));
 app.use("/api", errorHandler);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../frontend/build/")));
+  app.use(express.static(path.join(__dirname, "../frontend/build/")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../frontend/build/", "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/build/", "index.html"));
   });
 }
 
