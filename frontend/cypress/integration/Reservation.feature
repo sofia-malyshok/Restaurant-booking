@@ -40,9 +40,14 @@ Feature: Manage reservations
         When Click my bookings button
         Then List of user`s reservation is visible and have length '5'
     
-    Scenario: User can delete his/her reservation
+    Scenario: User can delete his/her future reservation
         Given Log in to the application
         When Click my bookings button
         And Click delete reservation for '4' reservation on reservations list
         And Confirm deletion
         Then List of user`s reservation is visible and have length '4'
+    
+    Scenario: User can not delete reservation which date is earlier than actual date
+        Given Log in to the application
+        When Click my bookings button
+        Then Past resevations are visible without delete button

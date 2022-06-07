@@ -47,10 +47,17 @@ Then('User can not move forward and see message about no availible tables', () =
     cy.get('#root').contains('Please choose another one').should('be.visible');
 });
 
-And('Click delete reservation for {string} reservation on reservations list', (numberOfReserbation) => {
-    cy.get('.list-group-numbered').find('li').eq(numberOfReserbation - 1).contains('Cancel').click();
+And('Click delete reservation for {string} reservation on reservations list', (numberOfReservation) => {
+    cy.get('.list-group-numbered').find('li').eq(numberOfReservation).should('contain', 'Cancel')
+    cy.get('.list-group-numbered').find('li').eq(numberOfReservation - 1).contains('Cancel').click();
 });
 
 And('Confirm deletion', () => {
     cy.get('button').contains('Delete').click();
+});
+
+Then('Past resevations are visible without delete button', () => {
+    cy.get('.list-group-numbered').find('li').eq(0).should('not.contain', 'Cancel')
+    cy.get('.list-group-numbered').find('li').eq(1).should('not.contain', 'Cancel')
+    cy.get('.list-group-numbered').find('li').eq(2).should('not.contain', 'Cancel')
 });
