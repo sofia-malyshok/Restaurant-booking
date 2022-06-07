@@ -43,6 +43,6 @@ Feature: Manage reservations
     Scenario: User can delete his/her reservation
         Given Log in to the application
         When Click my bookings button
-        And Click delete reservation for '2' reservation on reservations list
+        And Click delete reservation for '4' reservation on reservations list
         And Confirm deletion
         Then List of user`s reservation is visible and have length '4'
