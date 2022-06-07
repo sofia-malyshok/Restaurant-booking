@@ -89,14 +89,16 @@ const MyBookings = ({ user }) => {
                 </div>
                 Guests: {res.numberOfGuests}
               </div>
-              <Badge
-                bg="danger"
-                pill
-                style={{ cursor: "pointer" }}
-                onClick={() => setDeletedReservation(res)}
-              >
-                Cancel
-              </Badge>
+              {new Date(res.fromDate) > new Date() ? (
+                <Badge
+                  bg="danger"
+                  pill
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setDeletedReservation(res)}
+                >
+                  Cancel
+                </Badge>
+              ) : null}
             </ListGroup.Item>
           ))}
         </ListGroup>
