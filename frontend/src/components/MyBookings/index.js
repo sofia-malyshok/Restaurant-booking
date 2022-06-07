@@ -74,7 +74,7 @@ const MyBookings = ({ user }) => {
       <Container className="py-3 d-flex flex-column h-100">
         <h1>Your bookings</h1>
         <ListGroup as="ol" numbered className="mt-3">
-          {reservations.length == 0 ? <h2>No bookings yet ;(</h2> : null}
+          {reservations.length === 0 ? <h2>No bookings yet ;(</h2> : null}
           {reservations.map((res) => (
             <ListGroup.Item
               key={res._id}
