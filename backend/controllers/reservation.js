@@ -35,6 +35,12 @@ module.exports = {
         return;
       }
 
+      const dateOfReservation = new Date(reservation.fromDate)
+      if (dateOfReservation < new Date()) {
+        res.status(400).send('It is impossible to delete expired reservation!');
+        return;
+      }
+
       if (err) {
         res.status(500).send(err);
       } else {

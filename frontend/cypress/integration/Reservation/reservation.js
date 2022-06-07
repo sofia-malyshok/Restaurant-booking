@@ -11,7 +11,7 @@ And('Select the number of guests equals {string}', (ammountOfGuests) => {
 
 And('Select booking date', () => {
     cy.get('[data-testid="date-button"]').click();
-    cy.get('[data-testid="date-picker"]').contains('30').click({force: true});
+    cy.get('[data-testid="date-picker"]').contains('23').click({force: true});
 });
 
 And('Select booking time', () => {
